@@ -1,33 +1,11 @@
-import os
 import requests
+import sys
 import threading
 import concurrent.futures
 import xml.etree.ElementTree as et
 from bs4 import BeautifulSoup
 from datetime import datetime
 from dateutil.rrule import rrule, MONTHLY
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-
-
-def read_int(prompt_msg, error_msg):
-    """
-    Checks if user input is an integer.
-    Parameters
-    ----------
-    prompt_msg : str
-        Prompt message user responds to.
-    error_msg : str
-        Desired error message if ValueError is thrown.
-    Returns
-    -------
-    Integer
-    """
-    while True:
-        try:
-            return int(input(prompt_msg))
-        except ValueError:
-            print(error_msg)
 
 
 def get_url(year, month):
@@ -112,6 +90,7 @@ def fetch_and_download(url, save_path):
     thread_name = threading.currentThread().name
     f_name = url.split("/")[-1]
     file_path = save_path + f_name
+    file_path = save_path + f_name
     print(thread_name, "fetch", url)
     r = requests.get(url, stream=True)
 
@@ -140,6 +119,7 @@ def use_threading(urls, save_path=dir_path, num_of_threads=None):
 
 
 def main():
+    storage = sys.argv[1]
     tree = et.parse('config.xml')
     root = tree.getroot()
     start_year = root[0][0].text
@@ -167,7 +147,7 @@ def main():
     while True:
         confirmation = input(f"Total file count: {num_of_files}. Total size: {total_size} {unit}. Proceed? (Y/N): ")
         if confirmation == 'Y':
-            use_threading(list_files, "wait", root[2][0].text)
+            use_threading(list_files, storage, root[2][0].text)
         elif confirmation == 'N':
             break
         else:
