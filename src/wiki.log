@@ -1,0 +1,5 @@
+2021-03-19 09:52:13,976 root         DEBUG    Setting up Spark session.
+2021-03-19 09:52:19,114 root         DEBUG    Checking working zone for files.
+2021-03-19 09:52:19,115 root         DEBUG    Starting pageview dataset transformations for pageviews-20210317-user.bz2.
+2021-03-19 09:52:20,567 root         DEBUG    Transforming page view dataset
+2021-03-19 09:52:20,962 root         DEBUG    Creating hourly dataframe
