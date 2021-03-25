@@ -119,7 +119,7 @@ def use_threading(urls, save_path=dir_path, num_of_threads=None):
 
 
 def main():
-    storage = sys.argv[1]
+    storage = root[3][0].text
     tree = et.parse('config.xml')
     root = tree.getroot()
     start_year = root[0][0].text
