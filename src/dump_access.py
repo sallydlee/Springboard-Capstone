@@ -143,15 +143,7 @@ def main():
         list_sizes.extend(sizes)
 
     num_of_files, total_size, unit = get_info(list_sizes)
-
-    while True:
-        confirmation = input(f"Total file count: {num_of_files}. Total size: {total_size} {unit}. Proceed? (Y/N): ")
-        if confirmation == 'Y':
-            use_threading(list_files, storage, root[2][0].text)
-        elif confirmation == 'N':
-            break
-        else:
-            print("Please type 'Y' or 'N'.")
+    use_threading(list_files, storage, root[2][0].text)
 
 
 if __name__ == '__main__':
